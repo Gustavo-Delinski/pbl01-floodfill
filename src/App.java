@@ -51,23 +51,43 @@ public class App {
 
             FloodFill floodFill = new FloodFill();
 
-            BufferedImage finalImg = img;
+            BufferedImage finalImg1 = img;
             new Thread(() -> {
-                floodFill.FloodFillPilha(finalImg, x, y, corOriginal, novaCor, label1);
+                floodFill.FloodFillPilha(finalImg1, x, y, corOriginal, novaCor, label1);
+
+                try {
+                    ImageIO.write(finalImg1, "png", new File("saidaPilha.png"));
+                    System.out.println("Flood Fill da Pilha concluído.");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
             }).start();
 
-            BufferedImage finalImg1 = img2;
+            BufferedImage finalImg2 = img2;
             new Thread(() -> {
-                floodFill.FloodFillFila(finalImg1, x, y, corOriginal, novaCor, label2);
+                floodFill.FloodFillFila(finalImg2, x, y, corOriginal, novaCor, label2);
+
+                try {
+                    ImageIO.write(finalImg2, "png", new File("saidaFila.png"));
+                    System.out.println("Flood Fill da Fila concluído.");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
             }).start();
 
 
-            System.out.println("Flood Fill concluído.");
+
 
         } catch (IOException e) {
             System.out.println("Erro ao carregar a imagem.");
 
         }
+
+
+
+
     }
 
     private JLabel criarJanela(BufferedImage img, String titulo, int posX, int posY) {

@@ -16,7 +16,7 @@ public class FloodFill {
 
         int contadorPilha = 0; // vai controlar os frames
 
-        File pasta = new File("frames");
+        File pasta = new File("frames/pilha");
         if (!pasta.exists()) {
             pasta.mkdirs();
         } // cria pasta se nao existir
@@ -46,7 +46,7 @@ public class FloodFill {
                         e.printStackTrace();
                     }
 
-                    ImageIO.write(img, "png", new File("frames/frame_" + contadorPilha + ".png"));
+                    ImageIO.write(img, "png", new File("frames/pilha/frame_" + contadorPilha + ".png"));
                 } // ele vai salvar a cada 50 pixels
 
             } catch (IOException e) {
@@ -72,7 +72,7 @@ public class FloodFill {
 
         int contadorFila = 0;
 
-        File pasta = new File("frames");
+        File pasta = new File("frames/fila");
         if (!pasta.exists()) {
             pasta.mkdirs();
         } // cria pasta se nao existir
@@ -102,7 +102,7 @@ public class FloodFill {
                         e.printStackTrace();
                     }
 
-                    ImageIO.write(img, "png", new File("frames/frame_" + contadorFila + ".png"));
+                    ImageIO.write(img, "png", new File("frames/fila/frame_" + contadorFila + ".png"));
                 } // ele vai salvar a cada 50 pixels
 
             } catch (IOException e) {
