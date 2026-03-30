@@ -1,11 +1,12 @@
 import javax.imageio.ImageIO;
+import javax.swing.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
 public class FloodFill {
 
-    public void FloodFillPilha(BufferedImage img, int x, int y, int corOriginal, int novaCor) {
+    public void FloodFillPilha(BufferedImage img, int x, int y, int corOriginal, int novaCor, JLabel label) {
         Stack<Ponto> stack = new Stack<>(); // vai controlar quais pixels precisam ser controlados
         stack.push(new Ponto(x, y));
 
@@ -36,6 +37,15 @@ public class FloodFill {
             try {
                 contadorPilha++;
                 if (contadorPilha % 50 == 0) {
+                    label.setIcon(new ImageIcon(img));
+                    label.repaint();
+
+                    try {
+                        Thread.sleep(0);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
                     ImageIO.write(img, "png", new File("frames/frame_" + contadorPilha + ".png"));
                 } // ele vai salvar a cada 50 pixels
 
@@ -53,7 +63,7 @@ public class FloodFill {
         }
     }
 
-    public void FloodFillFila(BufferedImage img, int x, int y, int corOriginal, int novaCor) {
+    public void FloodFillFila(BufferedImage img, int x, int y, int corOriginal, int novaCor, JLabel label) {
 
         Queue<Ponto> queue = new Queue<>();
         queue.enqueue(new Ponto(x, y));
@@ -84,6 +94,14 @@ public class FloodFill {
             try {
                 contadorFila++;
                 if (contadorFila % 50 == 0) {
+                    label.setIcon(new ImageIcon(img));
+                    label.repaint();
+                    try {
+                        Thread.sleep(0); //
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
                     ImageIO.write(img, "png", new File("frames/frame_" + contadorFila + ".png"));
                 } // ele vai salvar a cada 50 pixels
 
