@@ -7,32 +7,32 @@ import java.io.IOException;
 public class FloodFill {
 
     public void FloodFillPilha(BufferedImage img, int x, int y, int corOriginal, int novaCor, JLabel label) {
-        Stack<Ponto> stack = new Stack<>(); // vai controlar quais pixels precisam ser controlados
+        Stack<Ponto> stack = new Stack<>();
         stack.push(new Ponto(x, y));
 
         if (corOriginal == novaCor) {
             return;
         }
 
-        int contadorPilha = 0; // vai controlar os frames
+        int contadorPilha = 0;
 
         File pasta = new File("frames/pilha");
         if (!pasta.exists()) {
             pasta.mkdirs();
-        } // cria pasta se nao existir
+        }
 
         while (!stack.isEmpty()) {
             Ponto p = stack.pop();
 
             if (p.getX() < 0 || p.getY() < 0 || p.getX() >= img.getWidth() || p.getY() >= img.getHeight()) {
                 continue;
-            } // verifica limites
+            }
 
             if (img.getRGB(p.getX(), p.getY()) != corOriginal) {
                 continue;
-            } // verifica cor
+            }
 
-            img.setRGB(p.getX(), p.getY(), novaCor); // pinta pixel
+            img.setRGB(p.getX(), p.getY(), novaCor);
 
             try {
                 contadorPilha++;
@@ -47,14 +47,14 @@ public class FloodFill {
                     }
 
                     ImageIO.write(img, "png", new File("frames/pilha/frame_" + contadorPilha + ".png"));
-                } // ele vai salvar a cada 50 pixels
+                }
 
             } catch (IOException e) {
                 e.printStackTrace();
 
             }
 
-            // vizinhos
+
             stack.push(new Ponto(p.getX() + 1, p.getY()));
             stack.push(new Ponto(p.getX() - 1, p.getY()));
             stack.push(new Ponto(p.getX(), p.getY() + 1));
@@ -75,7 +75,7 @@ public class FloodFill {
         File pasta = new File("frames/fila");
         if (!pasta.exists()) {
             pasta.mkdirs();
-        } // cria pasta se nao existir
+        }
 
         while (!queue.isEmpty()) {
 
@@ -97,13 +97,13 @@ public class FloodFill {
                     label.setIcon(new ImageIcon(img));
                     label.repaint();
                     try {
-                        Thread.sleep(0); //
+                        Thread.sleep(0);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
 
                     ImageIO.write(img, "png", new File("frames/fila/frame_" + contadorFila + ".png"));
-                } // ele vai salvar a cada 50 pixels
+                }
 
             } catch (IOException e) {
                 e.printStackTrace();

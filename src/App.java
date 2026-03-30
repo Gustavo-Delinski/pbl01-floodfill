@@ -18,8 +18,8 @@ public class App {
             JLabel label1 = criarJanela(img, "Pilha", 0, 0);
             JLabel label2 = criarJanela(img2, "Fila", 1000, 0);
 
-            String inputX = JOptionPane.showInputDialog("Digite X:"); // dentro do puffle é mais ou menos 300
-            String inputY = JOptionPane.showInputDialog("Digite Y:"); // dentro do puffle é mais ou menos 300
+            String inputX = JOptionPane.showInputDialog("Digite X:");
+            String inputY = JOptionPane.showInputDialog("Digite Y:");
 
             if (inputX == null || inputY == null || inputX.isEmpty() || inputY.isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Coordenadas não foram inseridas");
@@ -47,7 +47,7 @@ public class App {
 
             int corOriginal = img.getRGB(x, y);
 
-            int novaCor = new Color(41, 186, 24).getRGB(); // mudar cor aqui
+            int novaCor = new Color(41, 186, 24).getRGB();
 
             FloodFill floodFill = new FloodFill();
 
@@ -56,7 +56,7 @@ public class App {
                 floodFill.FloodFillPilha(finalImg1, x, y, corOriginal, novaCor, label1);
 
                 try {
-                    ImageIO.write(finalImg1, "png", new File("saidaPilha.png"));
+                    ImageIO.write(finalImg1, "png", new File("src/image/saidaPilha.png"));
                     System.out.println("Flood Fill da Pilha concluído.");
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -69,7 +69,7 @@ public class App {
                 floodFill.FloodFillFila(finalImg2, x, y, corOriginal, novaCor, label2);
 
                 try {
-                    ImageIO.write(finalImg2, "png", new File("saidaFila.png"));
+                    ImageIO.write(finalImg2, "png", new File("src/image/saidaFila.png"));
                     System.out.println("Flood Fill da Fila concluído.");
                 } catch (IOException e) {
                     e.printStackTrace();
